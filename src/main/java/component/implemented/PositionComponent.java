@@ -7,9 +7,9 @@ import component.HistoricBasedComponent;
  */
 public class PositionComponent extends HistoricBasedComponent<PositionComponent> {
 
-    float x,y,z;
+    int x,y,z;
 
-    public PositionComponent(float x, float y, float z) {
+    public PositionComponent(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
