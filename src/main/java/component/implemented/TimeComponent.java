@@ -2,6 +2,8 @@ package component.implemented;
 
 import component.BasedComponent;
 
+import java.sql.Time;
+
 /**
  * Created by Jan-Frederik Leißner on 15.02.2018.
  */
@@ -33,6 +35,16 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
      */
     public TimeComponent(int ticks_per_second) {
         this(ticks_per_second, 1f);
+    }
+
+    /**
+     * If someone just wants to give a entity a time-factor
+     * @param delta_seconds_factor
+     * @param base
+     */
+    public TimeComponent(float delta_seconds_factor, TimeComponent base){
+        this(0,delta_seconds_factor);
+        based_on(base);
     }
 
     public float delta_seconds() {
