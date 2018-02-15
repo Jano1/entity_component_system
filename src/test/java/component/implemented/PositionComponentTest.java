@@ -15,8 +15,8 @@ public class PositionComponentTest {
 
     @Before
     public void setUp() throws Exception {
-        test = new PositionComponent(1,1,1);
-        base = new PositionComponent(10,10,10);
+        test = new PositionComponent(1, 1, 1);
+        base = new PositionComponent(10, 10, 10);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class PositionComponentTest {
         test.snap();
         test.x = 100;
         test.reset();
-        assertEquals(1,test.x);
+        assertEquals(1, test.x);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class PositionComponentTest {
         test.x = 1;
         test.snap();
         test.reset();
-        assertEquals(false,test.has_snap());
+        assertEquals(false, test.has_snap());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class PositionComponentTest {
         test.x = 1;
         test.y = 1;
         test.z = 1;
-        assertEquals(true,test.equal_values(new PositionComponent(1,1,1)));
+        assertEquals(true, test.equal_values(new PositionComponent(1, 1, 1)));
     }
 
     @Test
@@ -49,13 +49,13 @@ public class PositionComponentTest {
         test.x = 1;
         test.y = 2;
         test.z = 1;
-        assertFalse(test.equal_values(new PositionComponent(1,1,1)));
+        assertFalse(test.equal_values(new PositionComponent(1, 1, 1)));
     }
 
     @Test
     public void test_clone() {
         PositionComponent clone = test.clone();
-        assertEquals(false,clone.equal_memory(test));
+        assertEquals(false, clone.equal_memory(test));
     }
 
     @Test
@@ -64,19 +64,19 @@ public class PositionComponentTest {
         test.x = 1;
         test.y = 1;
         test.z = 1;
-        assertEquals(true,test.absolute().equal_values(new PositionComponent(11,11,11)));
+        assertEquals(true, test.absolute().equal_values(new PositionComponent(11, 11, 11)));
     }
 
     @Test
     public void has_base_true() {
         test.based_on(base);
-        assertEquals(true,test.has_base());
+        assertEquals(true, test.has_base());
     }
 
     @Test
     public void has_base_false() {
         test.based_on(null);
-        assertEquals(false,test.has_base());
+        assertEquals(false, test.has_base());
     }
 
     @Test
