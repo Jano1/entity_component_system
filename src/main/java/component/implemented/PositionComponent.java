@@ -38,7 +38,7 @@ public class PositionComponent extends HistoricBasedComponent<PositionComponent>
     @Override
     public PositionComponent absolute() {
         if(has_base()){
-            return new PositionComponent(base.x+x,base.y+y,base.z+z);
+            return new PositionComponent(base.absolute().x+x,base.absolute().y+y,base.absolute().z+z);
         }
         return this;
     }

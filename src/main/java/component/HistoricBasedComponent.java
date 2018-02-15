@@ -13,6 +13,8 @@ public abstract class HistoricBasedComponent<T extends Component> extends Histor
 
     @Override
     public void based_on(T base) {
-        this.base = base;
+        if(!this.equal_memory(base)){
+            this.base = base;
+        }
     }
 }

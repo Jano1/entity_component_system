@@ -13,6 +13,8 @@ public abstract class BasedComponent<T extends Component> extends Component<T> i
 
     @Override
     public void based_on(T base) {
-        this.base = base;
+        if(!this.equal_memory(base)){
+            this.base = base;
+        }
     }
 }
