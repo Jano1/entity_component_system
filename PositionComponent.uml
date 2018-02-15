@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>component.implemented.PositionComponent</OriginalElement>
+  <nodes>
+    <node x="-322.4710573476701" y="416.7096774193548">component.implemented.PositionComponent</node>
+    <node x="148.6888888888889" y="0.0">java.lang.Cloneable</node>
+    <node x="203.0" y="224.0">component.Based</node>
+    <node x="0.0" y="224.0">component.Historic</node>
+    <node x="94.6888888888889" y="79.0">component.Component</node>
+    <node x="75.16944444444445" y="369.0">component.HistoricComponent</node>
+    <node x="187.98055555555555" y="537.0">component.HistoricBasedComponent</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="component.Component" target="java.lang.Cloneable">
+      <point x="0.0" y="-47.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="component.HistoricBasedComponent" target="component.Component">
+      <point x="61.333333333333314" y="-48.0" />
+      <point x="341.31388888888887" y="512.0" />
+      <point x="383.5" y="512.0" />
+      <point x="383.5" y="194.0" />
+      <point x="282.7888888888889" y="194.0" />
+      <point x="83.60000000000002" y="47.5" />
+    </edge>
+    <edge source="component.HistoricBasedComponent" target="component.HistoricComponent">
+      <point x="-61.33333333333334" y="-48.0" />
+      <point x="218.6472222222222" y="512.0" />
+      <point x="160.66944444444445" y="512.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="component.HistoricBasedComponent" target="component.Based">
+      <point x="0.0" y="-48.0" />
+      <point x="279.98055555555555" y="512.0" />
+      <point x="288.0" y="512.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="component.Based" target="component.Component">
+      <point x="0.0" y="-47.5" />
+      <point x="288.0" y="204.0" />
+      <point x="240.9888888888889" y="204.0" />
+      <point x="41.80000000000001" y="47.5" />
+    </edge>
+    <edge source="component.implemented.PositionComponent" target="component.HistoricBasedComponent">
+      <point x="0.0" y="-103.5" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="component.HistoricComponent" target="component.Component">
+      <point x="57.0" y="-59.0" />
+      <point x="217.66944444444445" y="344.0" />
+      <point x="192.5" y="344.0" />
+      <point x="192.5" y="204.0" />
+      <point x="199.1888888888889" y="204.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="component.HistoricComponent" target="component.Historic">
+      <point x="-57.0" y="-59.0" />
+      <point x="103.66944444444445" y="344.0" />
+      <point x="85.5" y="344.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="component.Historic" target="component.Component">
+      <point x="0.0" y="-47.5" />
+      <point x="85.5" y="204.0" />
+      <point x="115.5888888888889" y="204.0" />
+      <point x="-83.6" y="47.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9538461538461539" x="214.5" y="445.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
