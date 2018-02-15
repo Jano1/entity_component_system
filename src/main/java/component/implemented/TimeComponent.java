@@ -55,6 +55,9 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
         return (1f / ticks_per_second);
     }
 
+    public void tick(){
+        ticks_since_start++;
+    }
 
     @Override
     public TimeComponent absolute() {
