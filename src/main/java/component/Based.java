@@ -12,8 +12,8 @@ public interface Based<T extends Component> {
     T absolute();
 
     /**
-     * Sets the base for this Component
-     * @param base
+     * Sets the base for this component
+     * @param base the base for this component
      */
     void based_on(T base);
 
