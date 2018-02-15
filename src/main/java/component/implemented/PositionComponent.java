@@ -1,0 +1,45 @@
+package component.implemented;
+
+import component.HistoricBasedComponent;
+
+/**
+ * Created by Jan-Frederik Leißner on 15.02.2018.
+ */
+public class PositionComponent extends HistoricBasedComponent<PositionComponent> {
+
+    float x,y,z;
+
+    public PositionComponent(float x, float y, float z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    @Override
+    public void reset() {
+        if(has_snap()){
+            x = snap.x;
+            y = snap.y;
+            z = snap.z;
+            snap = null;
+        }
+    }
+
+    @Override
+    public boolean equal_values(PositionComponent test) {
+        return x==test.x && y==test.y && z==test.z;
+    }
+
+    @Override
+    protected PositionComponent clone() {
+        return new PositionComponent(x,y,z);
+    }
+
+    @Override
+    public PositionComponent absolute() {
+        if(has_base()){
+            return new PositionComponent(base.x+x,base.y+y,base.z+z);
+        }
+        return this;
+    }
+}
