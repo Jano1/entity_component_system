@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ecs.iml" filepath="$PROJECT_DIR$/.idea/modules/ecs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ecs_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ecs_main.iml" group="ecs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ecs_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ecs_test.iml" group="ecs" />
     </modules>
   </component>
 </project>
