@@ -43,4 +43,17 @@ public class IDPool {
     public String toString() {
         return "POOL("+useable_id_amount()+"/"+minimum+"-"+maximum+")"+ranges;
     }
+
+    public boolean is_leaseable(int id) {
+        if(!ranges.has_first()){
+            return false;
+        }
+        RangeListEntry current = ranges.first;
+        while(id < current.from && current.has_next()){
+            current = current.next;
+        }
+        return current.in_range(id);
+    }
+
+
 }
