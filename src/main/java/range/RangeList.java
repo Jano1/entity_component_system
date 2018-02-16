@@ -7,7 +7,7 @@ public class RangeList {
 
     private int lowest, highest;
 
-    public RangeListEntry first;
+    protected RangeListEntry first;
 
     public RangeList(int lowest, int highest) {
         this.lowest = lowest;

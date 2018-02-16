@@ -6,11 +6,13 @@ package range;
 public class IDPool {
     private RangeList ranges;
     private int minimum,maximum;
+    private int useable_id_amount;
 
     public IDPool(Range overall_range) {
         ranges = new RangeList(overall_range.from, overall_range.to);
         minimum = overall_range.from;
         maximum = overall_range.to;
+        useable_id_amount = overall_range.size();
     }
 
     public int next_id() {
@@ -22,30 +24,23 @@ public class IDPool {
         if (ranges.first.size() <= 0) {
             ranges.first = ranges.first.next;
         }
+        useable_id_amount--;
         return id;
     }
 
     public void release_id(int id) {
         if(!(id<minimum) && !(id>maximum)){
             ranges.insert_range(new Range(id, id));
+            useable_id_amount++;
         }
     }
 
-    public int useable_id_amount() {
-        if (!ranges.has_first()) {
-            return 0;
-        }
-        RangeListEntry current = ranges.first;
-        int counter = current.size();
-        while (current.has_next()) {
-            counter += current.next.size();
-            current = current.next;
-        }
-        return counter;
+    public int useable_id_amount(){
+        return useable_id_amount;
     }
 
     @Override
     public String toString() {
-        return "POOL("+minimum+"-"+maximum+")"+ranges;
+        return "POOL("+useable_id_amount()+"/"+minimum+"-"+maximum+")"+ranges;
     }
 }

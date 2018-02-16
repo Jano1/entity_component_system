@@ -26,7 +26,7 @@ public class IDPoolTest {
     public void release_id() {
         test.next_id();
         test.release_id(0);
-        assertEquals("POOL(0-100){[0-100]}",test.toString());
+        assertEquals("POOL(101/0-100){[0-100]}",test.toString());
     }
 
     @Test
