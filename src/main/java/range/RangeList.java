@@ -54,7 +54,7 @@ public class RangeList {
     }
 
     private void resolve_overlapping_right(RangeListEntry start, RangeListEntry next) {
-        while (start.mergeable(next)) {
+        while (next != null && start.mergeable(next)) {
             start.merge(next);
             start.next = next.next;
             next = next.next;

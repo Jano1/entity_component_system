@@ -5,9 +5,12 @@ package range;
  */
 public class IDPool {
     private RangeList ranges;
+    private int minimum,maximum;
 
     public IDPool(Range overall_range) {
         ranges = new RangeList(overall_range.from, overall_range.to);
+        minimum = overall_range.from;
+        maximum = overall_range.to;
     }
 
     public int next_id() {
@@ -22,7 +25,9 @@ public class IDPool {
     }
 
     public void release_id(int id) {
-        ranges.insert_range(new Range(id, id));
+        if(!(id<minimum) && !(id>maximum)){
+            ranges.insert_range(new Range(id, id));
+        }
     }
 
     public int useable_id_amount() {
@@ -38,4 +43,8 @@ public class IDPool {
         return counter;
     }
 
+    @Override
+    public String toString() {
+        return "POOL("+minimum+"-"+maximum+")"+ranges;
+    }
 }
