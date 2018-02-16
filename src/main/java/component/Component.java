@@ -8,21 +8,23 @@ import component.collection.ID;
  */
 public abstract class Component<T extends Component> implements Cloneable {
 
-    private static ComponentCollection collection = null;
     private ID bind;
+    private static ComponentCollection collection;
 
-    public ComponentCollection collection() {
-       if(collection == null){
-           collection = new ComponentCollection<T>();
-       }
-       return collection;
+    public ComponentCollection collection(){
+        if(collection == null){
+            collection = new ComponentCollection<T>();
+        }
+        return collection;
     }
 
     public void bind_to(ID id){
-        if(!collection().containsKey(id)){
+        if(collection().containsKey(id)){
+            collection().replace(id,this);
+        }else{
             collection().put(id,this);
-            bind = id;
         }
+        bind = id;
     }
 
     public ID bindend_to(){

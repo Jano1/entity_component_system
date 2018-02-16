@@ -2,8 +2,6 @@ package component.collection;
 
 import range.IDPool;
 
-import javax.swing.text.html.parser.Entity;
-
 /**
  * Created by Jan-Frederik Leißner on 16.02.2018.
  */
@@ -17,8 +15,10 @@ public class ID {
     }
 
     public void lease(){
-        if (!leased()) {
+        if (id==-1 || !leased()) {
             this.id = pool.next_id();
+        }else{
+            System.err.println("leasing from "+pool+" not possible...");
         }
     }
 
@@ -36,8 +36,17 @@ public class ID {
         return id;
     }
 
+    public static ID invalid_id(){
+        return new ID(null);
+    }
+
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return "ID:"+id;
     }
 }

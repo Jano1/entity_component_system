@@ -42,4 +42,9 @@ public class PositionComponent extends HistoricBasedComponent<PositionComponent>
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "POS("+x+","+y+","+z+")";
+    }
 }
