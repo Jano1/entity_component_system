@@ -15,7 +15,7 @@ public class RangeList {
         first = new RangeListEntry(lowest, highest);
     }
 
-    public boolean has_first(){
+    public boolean has_first() {
         return first != null;
     }
 
@@ -47,7 +47,7 @@ public class RangeList {
     }
 
     private void resolve_overlapping_left(RangeListEntry start, RangeListEntry last) {
-        if(last != null && last.mergeable(start)){
+        if (last != null && last.mergeable(start)) {
             last.merge(start);
             last.next = start.next;
         }

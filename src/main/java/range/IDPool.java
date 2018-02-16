@@ -1,16 +1,13 @@
 package range;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Jan-Frederik Leißner on 15.02.2018.
  */
-public class IDPool{
+public class IDPool {
     private RangeList ranges;
 
-    public IDPool(Range overall_range){
-        ranges = new RangeList(overall_range.from,overall_range.to);
+    public IDPool(Range overall_range) {
+        ranges = new RangeList(overall_range.from, overall_range.to);
     }
 
     public int next_id() {
@@ -28,13 +25,13 @@ public class IDPool{
         ranges.insert_range(new Range(id, id));
     }
 
-    public int useable_id_amount(){
-        if(!ranges.has_first()){
+    public int useable_id_amount() {
+        if (!ranges.has_first()) {
             return 0;
         }
         RangeListEntry current = ranges.first;
         int counter = current.size();
-        while(current.has_next()){
+        while (current.has_next()) {
             counter += current.next.size();
             current = current.next;
         }
