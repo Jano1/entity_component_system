@@ -15,6 +15,7 @@ public class IDPool {
 
     public int next_id() {
         if (!ranges.has_first()) {
+            System.err.println("Pool ran out of free ids!!!");
             return -1;
         }
         int id = ranges.first.increase_from();
