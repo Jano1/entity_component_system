@@ -43,7 +43,6 @@ public class RangeList {
             //resolve overlapping left
             resolve_overlapping_left(to_insert, last);
         }
-
     }
 
     private void resolve_overlapping_left(RangeListEntry start, RangeListEntry last) {
