@@ -21,7 +21,5 @@ public class TEST {
         test_2.bind_to(ID.lease_from(pool));
         test_3.bind_to(ID.lease_from(pool));
         test_4.bind_to(ID.lease_from(pool));
-
-        test_3.bindend_to().release();
     }
 }

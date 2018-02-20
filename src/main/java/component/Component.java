@@ -1,6 +1,7 @@
 package component;
 
 import component.collection.ComponentCollection;
+import component.collection.ComponentManager;
 import component.collection.ID;
 
 /**
@@ -8,27 +9,18 @@ import component.collection.ID;
  */
 public abstract class Component<T extends Component> implements Cloneable {
 
-    private ID bind;
-    private static ComponentCollection collection;
+    private ComponentManager manager;
+
+    public void set_manager(ComponentManager manager){
+        this.manager = manager;
+    }
 
     public ComponentCollection collection(){
-        if(collection == null){
-            collection = new ComponentCollection<T>();
-        }
-        return collection;
+        return manager.collection_for(getClass());
     }
 
     public void bind_to(ID id){
-        if(collection().containsKey(id)){
-            collection().replace(id,this);
-        }else{
-            collection().put(id,this);
-        }
-        bind = id;
-    }
-
-    public ID bindend_to(){
-        return bind;
+        collection().put(id,this);
     }
 
     /**
