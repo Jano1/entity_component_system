@@ -1,5 +1,7 @@
 package ecs;
 
+import component.Component;
+
 /**
  * Created by Jan-Frederik Leißner on 16.02.2018.
  */
@@ -14,6 +16,14 @@ public class ID {
 
     public void release(){
         ecs.remove_entity(this);
+    }
+
+    public void add_component(Component to_add){
+        ecs.add_component_to_id(to_add,this);
+    }
+
+    public void remove_component(Component to_remove){
+        ecs.remove_component_from_id(to_remove,this);
     }
 
     public static ID invalid_id(){

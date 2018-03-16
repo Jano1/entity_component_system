@@ -2,21 +2,42 @@ package ecs;
 
 import component.Component;
 import component.collection.ComponentCollection;
+import org.apache.commons.collections4.map.HashedMap;
 import range.IDPool;
 import range.Range;
+import system.SystemDispatcher;
+import system.System;
 
 import java.util.Map;
 
 public class ECS {
+    // id - handling
     private IDPool pool;
+
+    // component - handling
     private Map<String,ComponentCollection> component_collections;
+
+    // system - handling
+    private SystemDispatcher system_dispatcher;
+    private Map<String,System> systems;
 
     public ECS(IDPool pool) {
         this.pool = pool;
+        component_collections = new HashedMap<>();
+        systems = new HashedMap<>();
+        system_dispatcher = new SystemDispatcher();
     }
 
     public ECS(int id_pool_size){
         this(new IDPool(new Range(0,id_pool_size)));
+    }
+
+    public void register_system(System to_register){
+        systems.put(to_register.identifier(),to_register);
+    }
+
+    public void remove_system(System to_remove){
+        systems.remove(to_remove.identifier());
     }
 
     public ID create_entity(Blueprint blueprint){
@@ -45,5 +66,9 @@ public class ECS {
 
     public Map<String,ComponentCollection> component_collections(){
         return component_collections;
+    }
+
+    public void tick(){
+
     }
 }
