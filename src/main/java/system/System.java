@@ -2,7 +2,7 @@ package system;
 
 import java.util.List;
 
-public class System {
+public abstract class System implements Runnable {
     private String identifier;
 
     private List<String> run_before;
@@ -19,5 +19,18 @@ public class System {
 
     public String identifier() {
         return identifier;
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    protected List<String> before(){
+        return run_before;
+    }
+
+    protected List<String> after(){
+        return run_before;
     }
 }

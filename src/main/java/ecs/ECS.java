@@ -21,12 +21,10 @@ public class ECS {
 
     // system - handling
     private SystemDispatcher system_dispatcher;
-    private Map<String, System> systems;
 
     public ECS(IDPool pool) {
         this.pool = pool;
         component_collections = new HashedMap<>();
-        systems = new HashedMap<>();
         system_dispatcher = new SystemDispatcher();
     }
 
@@ -35,11 +33,11 @@ public class ECS {
     }
 
     public void register_system(System to_register) {
-        systems.put(to_register.identifier(), to_register);
+        system_dispatcher.register(to_register);
     }
 
     public void remove_system(System to_remove) {
-        systems.remove(to_remove.identifier());
+        system_dispatcher.remove(to_remove);
     }
 
     public SystemDispatcher edit_system_dispatcher() {
