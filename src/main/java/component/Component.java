@@ -32,13 +32,13 @@ public abstract class Component<T extends Component> implements Cloneable {
     public abstract T clone();
 
     public void create_collection_in(ECS ecs){
-        String key = collection_key();
+        String key = type();
         if(!ecs.component_collections().containsKey(key)){
             ecs.component_collections().put(key,new ComponentCollection<T>());
         }
     }
 
-    public String collection_key(){
+    public String type(){
         return getClass().toString();
     }
 }

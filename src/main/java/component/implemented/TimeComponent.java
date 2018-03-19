@@ -76,7 +76,7 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
     }
 
     @Override
-    protected TimeComponent clone() {
+    public TimeComponent clone() {
         return new TimeComponent(ticks_since_start, ticks_per_second, delta_seconds_factor);
     }
 }

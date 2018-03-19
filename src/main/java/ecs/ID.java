@@ -22,8 +22,12 @@ public class ID {
         ecs.add_component_to_id(to_add,this);
     }
 
-    public void remove_component(Component to_remove){
-        ecs.remove_component_from_id(to_remove,this);
+    public void remove_component(String type){
+        ecs.remove_component_from_id(type,this);
+    }
+
+    public Component get_component(String type){
+        return ecs.get_component_from_id(type,this);
     }
 
     public static ID invalid_id(){
@@ -43,7 +47,7 @@ public class ID {
 
     @Override
     public String toString() {
-        return "ID:"+id;
+        return "id:"+integer_id()+","+as_blueprint();
     }
 
     public int integer_id() {

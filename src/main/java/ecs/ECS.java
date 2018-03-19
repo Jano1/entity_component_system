@@ -54,7 +54,7 @@ public class ECS {
 
     public void add_component_to_id(Component component, ID id) {
         component.create_collection_in(this);
-        component_collections.get(component.collection_key()).put(id, component);
+        component_collections.get(component.type()).put(id, component);
     }
 
     public void remove_entity(ID id) {
@@ -64,8 +64,8 @@ public class ECS {
         }
     }
 
-    public void remove_component_from_id(Component component, ID id) {
-        component_collections.get(component.collection_key()).remove(id);
+    public void remove_component_from_id(String type, ID id) {
+        component_collections.get(type).remove(id);
     }
 
     public List<Component> components_of_id(ID id) {
@@ -80,6 +80,10 @@ public class ECS {
 
     public Map<String, ComponentCollection> component_collections() {
         return component_collections;
+    }
+
+    public Component get_component_from_id(String type, ID id) {
+        return (Component) component_collections.get(type).get(id);
     }
 
     public void tick() {
