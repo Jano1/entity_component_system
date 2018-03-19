@@ -30,6 +30,12 @@ public class ID {
         return new ID(-1,null);
     }
 
+    public Blueprint as_blueprint(){
+        Blueprint blueprint = new Blueprint();
+        blueprint.addAll(ecs.components_of_id(this));
+        return blueprint;
+    }
+
     @Override
     public int hashCode() {
         return id;

@@ -31,7 +31,7 @@ public class PositionComponent extends HistoricBasedComponent<PositionComponent>
     }
 
     @Override
-    protected PositionComponent clone() {
+    public PositionComponent clone() {
         return new PositionComponent(x, y, z);
     }
 
