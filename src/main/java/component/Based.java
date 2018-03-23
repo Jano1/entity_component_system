@@ -1,5 +1,7 @@
 package component;
 
+import ecs.ID;
+
 /**
  * Created by Jan-Frederik Leißner on 15.02.2018.
  */
@@ -15,11 +17,13 @@ public interface Based<T extends Component> {
      * Sets the base for this component
      * @param base the base for this component
      */
-    void based_on(T base);
+    void based_on(ID base);
 
     /**
      * Check if a base is existent
      * @return true if base!=null
      */
     boolean has_base();
+
+    T base();
 }
