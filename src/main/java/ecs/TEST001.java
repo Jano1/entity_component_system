@@ -11,15 +11,13 @@ public class TEST001 {
     public static void main(String[] args){
         ECS ecs = new ECS(100);
 
-        ID world = ecs.create_entity(Blueprint.empty_blueprint());
-        world.add_component(new TimeComponent(0,20,1));
-
         ID runner_01 = ecs.create_entity(Blueprint.empty_blueprint());
-        runner_01.add_component(new TimeComponent(1, world.get_component(TimeComponent.class)));
-        runner_01.add_component(new PositionComponent(0,0,0));
-        runner_01.add_component(new VelocityComponent(1,0,0));
+        runner_01.add(new TimeComponent(20));
+        runner_01.add(new PositionComponent(0f,0f,0f));
+        runner_01.add(new VelocityComponent(1f,0f,0f, 20));
 
-        System.out.println(world);
+        runner_01.get(VelocityComponent.class).normalize();
+
         System.out.println(runner_01);
 
     }
