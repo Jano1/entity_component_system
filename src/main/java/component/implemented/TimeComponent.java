@@ -2,8 +2,6 @@ package component.implemented;
 
 import component.BasedComponent;
 
-import java.sql.Time;
-
 /**
  * Created by Jan-Frederik Leißner on 15.02.2018.
  */
@@ -37,24 +35,6 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
         this(ticks_per_second, 1f);
     }
 
-    /**
-     * If someone just wants to give a entity a time-factor
-     * @param delta_seconds_factor
-     * @param base
-     */
-    public TimeComponent(float delta_seconds_factor, TimeComponent base){
-        this(0,delta_seconds_factor);
-        based_on(base);
-    }
-
-    public float delta_seconds() {
-        return delta_seconds_plain() * delta_seconds_factor;
-    }
-
-    public float delta_seconds_plain() {
-        return (1f / ticks_per_second);
-    }
-
     public void tick(){
         ticks_since_start++;
     }
@@ -63,9 +43,9 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
     public TimeComponent absolute() {
         if (has_base()) {
             return new TimeComponent(
-                    base.absolute().ticks_per_second + ticks_per_second,
-                    base.absolute().ticks_per_second + ticks_per_second,
-                    base.absolute().delta_seconds_factor * delta_seconds_factor);
+                    base().absolute().ticks_per_second + ticks_per_second,
+                    base().absolute().ticks_per_second + ticks_per_second,
+                    base().absolute().delta_seconds_factor * delta_seconds_factor);
         }
         return this;
     }
@@ -86,7 +66,7 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
                 "ticks_since_start=" + ticks_since_start +
                 ", ticks_per_second=" + ticks_per_second +
                 ", delta_seconds_factor=" + delta_seconds_factor +
-                ", base=" + base +
+                ", base=" + base() +
                 '}';
     }
 }
