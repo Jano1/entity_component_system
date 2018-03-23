@@ -32,11 +32,11 @@ public class ECS {
         this(new IDPool(new Range(0, id_pool_size)));
     }
 
-    public void register_system(System to_register) {
+    public void register_system(Class<? extends System> to_register) {
         system_dispatcher.register(to_register);
     }
 
-    public void remove_system(System to_remove) {
+    public void remove_system(Class<? extends System> to_remove) {
         system_dispatcher.remove(to_remove);
     }
 
@@ -86,6 +86,6 @@ public class ECS {
     }
 
     public void tick() {
-
+        system_dispatcher.run_tick_plan();
     }
 }

@@ -1,5 +1,7 @@
 package system;
 
+import ecs.ECS;
+
 import java.util.List;
 
 public abstract class System implements Runnable {
@@ -10,6 +12,10 @@ public abstract class System implements Runnable {
 
     private boolean single_running_instance = true;
 
+    public System(){
+
+    }
+
     public System(String identifier, List<String> run_after, List<String> run_before, boolean single_running_instance) {
         this.identifier = identifier;
         this.run_after = run_after;
@@ -17,13 +23,13 @@ public abstract class System implements Runnable {
         this.single_running_instance = single_running_instance;
     }
 
-    public String identifier() {
-        return identifier;
-    }
-
     @Override
     public void run() {
 
+    }
+
+    public String identifier() {
+        return identifier;
     }
 
     protected List<String> before(){
