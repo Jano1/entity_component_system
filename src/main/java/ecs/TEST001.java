@@ -15,7 +15,7 @@ public class TEST001 {
         world.add_component(new TimeComponent(0,20,1));
 
         ID runner_01 = ecs.create_entity(Blueprint.empty_blueprint());
-        runner_01.add_component(new TimeComponent(1, (TimeComponent) world.as_blueprint().get_specific(TimeComponent.class.toString())));
+        runner_01.add_component(new TimeComponent(1, world.get_component(TimeComponent.class)));
         runner_01.add_component(new PositionComponent(0,0,0));
         runner_01.add_component(new VelocityComponent(1,0,0));
 

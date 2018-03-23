@@ -18,16 +18,16 @@ public class ID {
         ecs.remove_entity(this);
     }
 
-    public void add_component(Component to_add){
+    public <T extends Component> void add_component(T to_add){
         ecs.add_component_to_id(to_add,this);
     }
 
-    public void remove_component(String type){
-        ecs.remove_component_from_id(type,this);
+    public <T extends Component> void remove_component(Class<T> with_class){
+        ecs.remove_component_from_id(with_class,this);
     }
 
-    public Component get_component(String type){
-        return ecs.get_component_from_id(type,this);
+    public <T extends Component> T get_component(Class<T> with_class){
+        return ecs.get_component_from_id(with_class,this);
     }
 
     public static ID invalid_id(){

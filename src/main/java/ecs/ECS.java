@@ -52,9 +52,12 @@ public class ECS {
         return possible_id;
     }
 
-    public void add_component_to_id(Component component, ID id) {
-        component.create_collection_in(this);
-        component_collections.get(component.type()).put(id, component);
+    public <T extends Component> void add_component_to_id(T component, ID id) {
+        String key = component.getClass().toString();
+        if(!component_collections.containsKey(key)){
+            component_collections.put(key,new ComponentCollection<T>());
+        }
+        component_collections.get(key).put(id,component);
     }
 
     public void remove_entity(ID id) {
@@ -64,8 +67,8 @@ public class ECS {
         }
     }
 
-    public void remove_component_from_id(String type, ID id) {
-        component_collections.get(type).remove(id);
+    public <T extends Component> void remove_component_from_id(Class<T> with_class, ID id) {
+        component_collections.get(with_class).remove(id);
     }
 
     public List<Component> components_of_id(ID id) {
@@ -78,12 +81,8 @@ public class ECS {
         return result;
     }
 
-    public Map<String, ComponentCollection> component_collections() {
-        return component_collections;
-    }
-
-    public Component get_component_from_id(String type, ID id) {
-        return (Component) component_collections.get(type).get(id);
+    public <T extends Component> T get_component_from_id(Class<T> with_class, ID id) {
+        return (T) component_collections.get(with_class.toString()).get(id);
     }
 
     public void tick() {
