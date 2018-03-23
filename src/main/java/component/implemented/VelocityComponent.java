@@ -7,9 +7,9 @@ import component.HistoricBasedComponent;
  */
 public class VelocityComponent extends HistoricBasedComponent<VelocityComponent> {
 
-    int x,y,z;
+    float x,y,z;
 
-    public VelocityComponent(int x, int y, int z) {
+    public VelocityComponent(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;

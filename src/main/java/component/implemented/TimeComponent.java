@@ -79,4 +79,14 @@ public class TimeComponent extends BasedComponent<TimeComponent> {
     public TimeComponent clone() {
         return new TimeComponent(ticks_since_start, ticks_per_second, delta_seconds_factor);
     }
+
+    @Override
+    public String toString() {
+        return "TimeComponent{" +
+                "ticks_since_start=" + ticks_since_start +
+                ", ticks_per_second=" + ticks_per_second +
+                ", delta_seconds_factor=" + delta_seconds_factor +
+                ", base=" + base +
+                '}';
+    }
 }
