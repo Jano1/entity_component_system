@@ -1,6 +1,7 @@
 package system;
 
 import ecs.ECS;
+import ecs.ID;
 
 import java.util.List;
 
@@ -39,4 +40,6 @@ public abstract class System implements Runnable {
     protected List<String> after(){
         return run_before;
     }
+
+    public abstract void handle(List<ID> to_handle);
 }
