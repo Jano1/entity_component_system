@@ -10,7 +10,7 @@ public abstract class System implements Runnable {
 
     private Class<? extends Component>[] needed_components;
 
-    public System(Class<? extends Component>[] needed_components) {
+    public System(Class<? extends Component>... needed_components) {
         this.needed_components = needed_components;
     }
 
