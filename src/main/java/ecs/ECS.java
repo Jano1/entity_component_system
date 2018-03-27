@@ -102,7 +102,6 @@ public class ECS {
                     }
                     cached_id_lists.put(cache_key,id_list);
                 }
-                java.lang.System.out.println(cached_id_lists);
                 current_system.handle(cached_id_lists.get(cache_key));
             }
         }
