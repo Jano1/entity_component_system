@@ -2,13 +2,17 @@ package ecs;
 
 import component.Component;
 import component.collection.ComponentCollection;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.map.HashedMap;
 import range.IDPool;
 import range.Range;
-import system.SystemDispatcher;
 import system.System;
+import system.SystemDispatcher;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class ECS {
     // id - handling
@@ -16,7 +20,7 @@ public class ECS {
 
     // component - handling
     private Map<Class, ComponentCollection> component_collections;
-    private Map<List<Class>,List<ID>> cached_id_lists;
+    private Map<String, List<ID>> cached_id_lists;
 
     // system - handling
     private SystemDispatcher system_dispatcher;
@@ -32,11 +36,11 @@ public class ECS {
         this(new IDPool(new Range(0, id_pool_size)));
     }
 
-    public void register_system_group(String key, System[] to_register){
-        system_dispatcher.register_group(key,to_register);
+    public void register_system_group(String key, System[] to_register) {
+        system_dispatcher.register_group(key, to_register);
     }
 
-    public void remove_system_group(String key){
+    public void remove_system_group(String key) {
         system_dispatcher.remove_group(key);
     }
 
@@ -49,10 +53,10 @@ public class ECS {
     }
 
     public <T extends Component> void add_component_to_id(T component, ID id) {
-        if(!component_collections.containsKey(component.getClass())){
-            component_collections.put(component.getClass(),new ComponentCollection<T>());
+        if (!component_collections.containsKey(component.getClass())) {
+            component_collections.put(component.getClass(), new ComponentCollection<T>());
         }
-        component_collections.get(component.getClass()).put(id,component);
+        component_collections.get(component.getClass()).put(id, component);
     }
 
     public void remove_entity(ID id) {
@@ -82,14 +86,37 @@ public class ECS {
 
     public void tick() {
         List<List<System>> ordered_system_groups = system_dispatcher.get_system_groups();
-        for(List<System> current_group : ordered_system_groups){
-            for(System current_system : current_group){
-
+        for (List<System> current_group : ordered_system_groups) {
+            for (System current_system : current_group) {
+                List<ID> id_list = new ArrayList<>();
+                String cache_key = generate_cache_key(current_system.needed_components());
+                if(!cached_id_lists.containsKey(cache_key)){
+                    for (Class<? extends Component> needed : current_system.needed_components()) {
+                        List<ID> local_list = new ArrayList<>(component_collections.get(needed).keySet());
+                        if (id_list.size() == 0) {
+                            id_list.addAll(local_list);
+                            continue;
+                        }
+                        id_list = ListUtils.intersection(id_list, local_list);
+                    }
+                    cached_id_lists.put(cache_key,id_list);
+                }
+                java.lang.System.out.println(cached_id_lists);
+                current_system.handle(cached_id_lists.get(cache_key));
             }
         }
     }
 
-    public void render(float interpolation){
+    private String generate_cache_key(Class<? extends Component>[] classes) {
+        List<String> cache_key_list = new ArrayList<>();
+        for(Class needed : classes){
+            cache_key_list.add(needed.getName());
+        }
+        Collections.sort(cache_key_list);
+        return String.join(":",cache_key_list);
+    }
+
+    public void render(float interpolation) {
 
     }
 }
