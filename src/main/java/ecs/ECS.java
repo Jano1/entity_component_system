@@ -86,6 +86,7 @@ public class ECS {
 
     public void tick() {
         List<List<System>> ordered_system_groups = system_dispatcher.get_system_groups();
+        cached_id_lists.clear();
         for (List<System> current_group : ordered_system_groups) {
             for (System current_system : current_group) {
                 List<ID> id_list = new ArrayList<>();
