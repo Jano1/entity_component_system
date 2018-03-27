@@ -16,6 +16,7 @@ public class ECS {
 
     // component - handling
     private Map<Class, ComponentCollection> component_collections;
+    private Map<List<Class>,List<ID>> cached_id_lists;
 
     // system - handling
     private SystemDispatcher system_dispatcher;
@@ -24,6 +25,7 @@ public class ECS {
         this.pool = pool;
         component_collections = new HashedMap<>();
         system_dispatcher = new SystemDispatcher();
+        cached_id_lists = new HashedMap<>();
     }
 
     public ECS(int id_pool_size) {
@@ -36,10 +38,6 @@ public class ECS {
 
     public void remove_system_group(String key){
         system_dispatcher.remove_group(key);
-    }
-
-    public SystemDispatcher edit_system_dispatcher() {
-        return system_dispatcher;
     }
 
     public ID create_entity(Blueprint blueprint) {
@@ -82,38 +80,16 @@ public class ECS {
         return (T) component_collections.get(with_class).get(id);
     }
 
-    Map<String,List<ID>> cached_id_lists = new HashMap<>();
     public void tick() {
         List<List<System>> ordered_system_groups = system_dispatcher.get_system_groups();
-        cached_id_lists.clear();
         for(List<System> current_group : ordered_system_groups){
             for(System current_system : current_group){
-                current_system.handle(id_list_with(current_system.needed_components()));
+
             }
         }
     }
 
-    private List<ID> id_list_with(Class<? extends Component>[] classes) {
-        String cache_key = Arrays.toString(classes);
-        if(!cached_id_lists.containsKey(cache_key)){
-            List<ID> to_cache = new ArrayList<>();
-            List<ComponentCollection> collections = new ArrayList<>();
-            //gather all needed collections
-            for(Class needed_class : classes){
-                collections.add(component_collections.get(needed_class));
-            }
-            //test if id is in all
-            if(collections.size()>0){
-                for(ID current_id : (Set<ID>) collections.get(0).keySet()){
-                    for(ComponentCollection current_collection : collections){
-                        if(!current_collection.containsKey(current_id)){
+    public void render(float interpolation){
 
-                        }
-                    }
-                }
-            }
-            cached_id_lists.put(cache_key,to_cache);
-        }
-        return cached_id_lists.get(cache_key);
     }
 }
