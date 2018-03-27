@@ -81,6 +81,9 @@ public class ECS {
     }
 
     public <T extends Component> T get_component_from_id(Class<T> with_class, ID id) {
+        if(!component_collections.containsKey(with_class)){
+            return null;
+        }
         return (T) component_collections.get(with_class).get(id);
     }
 
