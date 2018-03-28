@@ -1,5 +1,7 @@
 package component;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import component.collection.ComponentCollection;
 import ecs.ECS;
 
@@ -30,4 +32,13 @@ public abstract class Component<T extends Component> implements Cloneable {
      */
     @Override
     public abstract T clone();
+
+    /**
+     * Creates a json string representation of this object
+     * @return
+     */
+    public String as_json(){
+        Gson compiler = new Gson();
+        return compiler.toJson(this);
+    }
 }
