@@ -41,4 +41,9 @@ public abstract class Component<T extends Component> implements Cloneable {
         Gson compiler = new Gson();
         return compiler.toJson(this);
     }
+
+    @Override
+    public String toString() {
+        return as_json();
+    }
 }
